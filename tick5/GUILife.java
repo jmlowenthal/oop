@@ -3,6 +3,7 @@ package oop.tick5;
 import java.io.*;
 import java.util.*;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
@@ -63,19 +64,20 @@ public class GUILife extends JFrame implements ListSelectionListener {
 
 	private JPanel createControlPanel() {
 		JPanel ctrl =  new JPanel();
+		ctrl.setLayout(new GridLayout(0, 3));
 		addBorder(ctrl,"Controls");
 
 		JButton back = new JButton("< Back");
 		back.addActionListener(e -> moveBack());
-		ctrl.add(back, BorderLayout.WEST);
+		ctrl.add(back);
 
 		mPlayButton = new JButton("Play");
 		mPlayButton.addActionListener(e -> togglePlay());
-		ctrl.add(mPlayButton, BorderLayout.CENTER);
+		ctrl.add(mPlayButton);
 
 		JButton forward = new JButton("Forward >");
 		forward.addActionListener(e -> moveForward());
-		ctrl.add(forward, BorderLayout.EAST);
+		ctrl.add(forward);
 
 		ActionListener canceler = new ActionListener() {
 			@Override

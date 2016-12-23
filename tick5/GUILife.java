@@ -95,6 +95,9 @@ public class GUILife extends JFrame implements ListSelectionListener {
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
+		if (mTimer != null) mTimer.cancel();
+		mPlayButton.setText("Play");
+
 		JList<Pattern> list = (JList<Pattern>)e.getSource();
 		Pattern p = list.getSelectedValue();
 		

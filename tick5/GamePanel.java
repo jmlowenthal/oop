@@ -14,24 +14,30 @@ public class GamePanel extends JPanel {
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         if (mWorld != null) {
-			double dx = this.getWidth() / mWorld.getWidth();
-			double dy = this.getHeight() / mWorld.getHeight();
-            int d = (int)Math.min(dx, dy);
+            double dx = (double)this.getWidth() / mWorld.getWidth();
+            double dy = (double)this.getHeight() / mWorld.getHeight();
+            double d = Math.min(dx, dy);
 
+            g.setColor(Color.BLACK);
 			for (int x = 0; x < mWorld.getWidth(); ++x) {
 				for (int y = 0; y < mWorld.getHeight(); ++y) {
                     if (mWorld.getCell(x, y)) {
-                        g.setColor(Color.BLACK);
-                        g.fillRect(x * d, y * d, d, d);
+                        g.fillRect((int)(x * d), (int)(y * d), (int)d, (int)d);
                     }
-					g.setColor(Color.LIGHT_GRAY);
-                    g.drawRect(x * d, y * d, d, d);
 				}
 			}
-
-            g.setColor(Color.BLACK);
+            
             g.drawString("Generation: " + mWorld.getGenerationCount(), 10, this.getHeight() - 20);
-		}
+		
+            g.setColor(Color.LIGHT_GRAY);
+            for (int x = 0; x <= mWorld.getWidth(); ++x) {
+                g.drawLine((int)(x * d), 0, (int)(x * d), (int)(mWorld.getHeight() * d));
+            }
+
+            for (int y = 0; y <= mWorld.getHeight(); ++y) {
+                g.drawLine(0, (int)(y * d), (int)(mWorld.getWidth() * d), (int)(y * d));
+            }
+        }
     }
 
     public void display(World w) {
